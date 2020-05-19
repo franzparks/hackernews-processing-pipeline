@@ -1,0 +1,29 @@
+1) git clone git@github.com:franzparks/hackernews-processing-pipeline.git
+2) Open in idea . If not (./gradlew clean build)
+3) Mac:
+	brew install kafka
+	brew services start zookeeper 
+	brew services start kafka
+   Mac/Linux: Download from https://www.apache.org/dyn/closer.cgi?path=/kafka/2.4.1/kafka_2.11-2.4.1.tgz and unzip
+4) Start kafka and zookeeper if not installed and started via brew:
+	bin/zookeeper-server-start.sh config/zookeeper.properties
+	bin/kafka-server-start.sh config/server.properties
+Note: If installed via brew you dont have to give bin/kafka-topics.sh . Instead you can just type kafka-topics followed by its arguments . Same for console-consumer. or console-producer
+5) 	bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 10 --electionAlg 0 --topic input_topic
+6) 	bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 10 --electionAlg 0 --topic news_title_count_topic
+7) 	bin/kafka-topics.sh --list --zookeeper localhost:2181
+8)	bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic incoming_topic
+9) bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic news_title_count_topic
+
+10) Explain kafka producer:
+
+11) Explain streams:
+
+
+Break:
+
+12) Run inside docker
+
+	docker exec -it docker_kafka_1 /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic news_title_count_topic
+
+

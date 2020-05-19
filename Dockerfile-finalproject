@@ -1,0 +1,10 @@
+### stage 0, build time
+FROM adoptopenjdk/openjdk11 as build-stage
+WORKDIR /usr/local/finalproject
+COPY . .
+RUN ./gradlew clean build
+
+### stage 1, run time
+FROM adoptopenjdk/openjdk11
+WORKDIR /usr/local/finalproject
+COPY --from=build-stage /usr/local/finalproject /usr/local/finalproject
